@@ -1,0 +1,49 @@
+<div class="container">
+<header class="py-2">
+     <div class="row">
+       <div class="col">
+         <form autocomplete="off">
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                   <div class="input-group-prepend ">
+                       <span class="input-group-text bg-secondary text-white"><i class="fas fa-search"></i></span>
+                   </div>
+                   <input type="text" class="form-control" placeholder="Search" name="search" #search>
+                   <div class="input-group-append">
+                    <button class="btn btn-lg input-group-text btn-primary" (click)="SearchImages(search)">
+                      <span class="input-group-text text-primary font-weight-bold">Search</span>
+                    </button>
+                </div>
+              </div>
+          </div>
+         </form>
+       </div>
+     </div>
+     <div class="row font-weight-bold text-center text-white" *ngIf="!images.length">
+       <div class="col">
+         <h4>No Results Found / Swear Words Filter Mode On</h4>
+       </div>
+     </div>
+</header>
+
+
+<section id="images" class="py-2">
+      <div class="row">
+          <div class="col-md-3 col-sm-6 mb-3" *ngFor="let image of images | paginate: { itemsPerPage: datalimit, currentPage: page }">
+            <div class="card card-body">
+                <img src="{{image}}" style="width: 250px;height:250px" alt="" class="img-fluid">
+          </div>
+        </div>
+        </div>
+        <div class="row" *ngIf="images.length > 0">
+          <div class="col py-2">
+            <div class="text-center">
+              <pagination-controls (pageChange)="page = $event" class="my-pagination"></pagination-controls>
+            </div>
+          </div>
+        </div>
+</section>
+</div>
+
+
+
