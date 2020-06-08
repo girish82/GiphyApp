@@ -1,12 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { SearchComponent } from './search/search.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        SearchComponent
       ],
+      imports: [NgxPaginationModule, HttpClientTestingModule]
     }).compileComponents();
   }));
 
@@ -22,10 +27,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('GiphyApp');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('GiphyApp app is running!');
-  });
 });

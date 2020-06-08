@@ -25,15 +25,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     console.log(srch.value);
     this.dataSubsciption = this.dataService.getImages(srch.value)
     .subscribe((res) => {
+      this.page = 1;
       this.images = res;
     },
     (err) => {
-      console.log('Error Occured');
+      console.log(err);
     });
   }
 
   ngOnDestroy() {
+    if ( this.dataSubsciption) {
     this.dataSubsciption.unsubscribe();
+    }
   }
 
 
